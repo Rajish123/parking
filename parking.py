@@ -100,6 +100,9 @@ if __name__ == "__main__":
                         parking_records.update_record(carid,new_category.upper(),new_model,new_reg_num,new_colour)
                     else:
                         print("xaoma")
+                elif choice == 4:
+                    model = input("Enter model name: ")
+                    parking_records.query(model)
                     
 
                 else:

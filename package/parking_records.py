@@ -54,26 +54,10 @@ def update_record(id,newcategory,newmodel,newregnum,newcolour):
     mycursor.execute(command,value)
     mydb.commit() 
 
-# def update_record(model,new_model):
-#     command = "UPDATE parking_record SET model = %s WHERE model = %s"
-#     value = (new_model, model)
-#     mycursor.execute(command, value)
-#     mydb.commit()
-
-# def update_record(model,reg_num,new_model,new_registration):
-#     sqlcommand = "UPDATE parking_record SET (model,registration_num) = ('%s','%s') WHERE (model,registration_num) = ('%s','%s')"
-#     value_to_set = ((new_model,new_registration, ),(model,reg_num, ))
-#     # records_to_update = ()
-#     mycursor.execute(sqlcommand,value_to_set)
-#     # sqlcommand = "UPDATE parking_record SET category = , model = '{}',registration_num = {},colour = '{}' WHERE category = '{}',registration_num = {}".format(new_category,new_model,new_registration,new_colour,category,reg_num)
-#     # mycursor.execute(sqlcommand)
-#     mydb.commit()
-#     print("Update successfull")
-
-# def query(model):
-#     sqlcommand = "SELECT * FROM parking_record WHERE (model) LIKE (%s)", ('%' + model + '%',)
-#     mycursor.execute(sqlcommand)
-#     result = mycursor.fetchall()
-#     for i in result:
-#         print(i)
-    
+def query(model):
+    param = '{}%'.format(model)
+    sqlcommand = "SELECT * FROM parking_record WHERE model like %s ORDER BY date_time"
+    mycursor.execute(sqlcommand,(param, ))
+    result = mycursor.fetchall()
+    for i in result:
+        print(i)
