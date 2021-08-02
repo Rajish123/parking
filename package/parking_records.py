@@ -48,9 +48,9 @@ def get_record(catagory,registration):
     myresult = mycursor.fetchone()
     return myresult
 
-def update_record(id,newmodel,newregnum):
-    command="UPDATE parking_record SET model=%s,registration_num=%s WHERE id=%s"
-    value = (newmodel,newregnum,id)
+def update_record(id,newcategory,newmodel,newregnum,newcolour):
+    command="UPDATE parking_record SET category = %s,model=%s,registration_num=%s,colour=%s WHERE id=%s"
+    value = (newcategory,newmodel,newregnum,newcolour,id)
     mycursor.execute(command,value)
     mydb.commit() 
 

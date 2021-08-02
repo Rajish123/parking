@@ -86,21 +86,18 @@ if __name__ == "__main__":
                 elif choice == 3:
                     category = input("Enter category: ")
                     carid = int(input("Enter parking id you want to update: "))
-                    # model = input("Enter model name you want to update: ")
                     reg_num = int(input("Enter registration number you want to update: "))
                     my_result = parking_records.get_record(category.upper(),reg_num)
                     if my_result:
-                        # new_category = input("Enter new category: ")
+                        new_category = input("Enter new category: ")
                         new_model = input("Enter new model name: ")
-                        # new_model = input("Enter new registration name: ")
+                        new_colour = input("Enter new colour: ")
                         try:
                             new_reg_num = int(input("Enter new registration number: "))
                         except ValueError:
                             print("Please use integer!")
                             continue
-                        # new_colour = input("Enter colour: ")
-                        parking_records.update_record(carid,new_model,new_reg_num)
-                        # parking_records.update_record(new_category.upper(),reg_num,new_category.upper(),new_model,new_reg_num,new_colour)
+                        parking_records.update_record(carid,new_category.upper(),new_model,new_reg_num,new_colour)
                     else:
                         print("xaoma")
                     
