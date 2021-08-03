@@ -15,7 +15,7 @@ if __name__ == "__main__":
         else:
             ticket = park.get_ticket(parking_space)
             print("")
-            print("\n1.Park\n2.Return\n3.Update\n4.Query\n".upper())
+            print("\n1.Park\n2.Return\n3.Update\n4.Query\n5.Delete\n".upper())
             try:
                 choice = int(input("Enter your choice"))
             except ValueError:
@@ -37,8 +37,9 @@ if __name__ == "__main__":
                         bike = vechile_module.Vechile("A", model, registration_num, colour)
                         print("\n")
                         print(f"Please park your bike at parking slot {ticket}")
-                        slot, date_time = park.bike_park(ticket,parking_space)
+                        slot, date_time = park.bike_park(ticket)
                         parking_records.add_record(vechile_catagoery.upper(),model,registration_num,colour,ticket,date_time)
+                    
                     elif vechile_catagoery.upper() == "B":
                         model = input("Enter car name: ")
                         try:
@@ -56,13 +57,12 @@ if __name__ == "__main__":
                         print("Invalid Input!")
                         continue
                 elif choice == 2:
-                    vechile_catagoery = input("Your vechile(A/B): ")
                     try:
                         registration_num = int(input("Enter your registration number: "))
                     except ValueError:
                         print("Use integer!")
                         continue
-                    my_result = parking_records.get_record(vechile_catagoery.upper(),registration_num)
+                    my_result = parking_records.get_record(registration_num)
                     print("*"*100)
                     print(f'id: {my_result[0]}')
                     print(f'catagoery: {my_result[1]}')
@@ -84,27 +84,42 @@ if __name__ == "__main__":
                     print(f"Total bill is {bill}")
                     print('ok')
                 elif choice == 3:
-                    category = input("Enter category: ")
                     carid = int(input("Enter parking id you want to update: "))
-                    reg_num = int(input("Enter registration number you want to update: "))
-                    my_result = parking_records.get_record(category.upper(),reg_num)
+                    try:
+
+                        reg_num = int(input("Enter registration number you want to update: "))
+                    except ValueError:
+                        print("Invalid input!Please provide integer.")
+                    my_result = parking_records.get_record(reg_num)
                     if my_result:
                         new_category = input("Enter new category: ")
                         new_model = input("Enter new model name: ")
-                        new_colour = input("Enter new colour: ")
                         try:
+                            new_colour = input("Enter new colour: ")
                             new_reg_num = int(input("Enter new registration number: "))
                         except ValueError:
                             print("Please use integer!")
                             continue
                         parking_records.update_record(carid,new_category.upper(),new_model,new_reg_num,new_colour)
+                        print("Successfully updated.")
                     else:
                         print("xaoma")
                 elif choice == 4:
                     model = input("Enter model name: ")
+                    print("Fetching data.Please wait....")
                     parking_records.query(model)
-                    
-
+                elif choice == 5:
+                    try:
+                        id = int(input("Enter parking id: "))
+                        reg_num = int(input("Enter registration number: "))
+                    except ValueError:
+                        print("Invalid input!Please provide integer.")
+                    record_check = parking_records.get_record(reg_num)
+                    if record_check:
+                        parking_records.delete_record(id,reg_num)
+                        print("Successfully removed.")
+                    else:
+                        print(f"Please check id.ID {id} not found!")
                 else:
                     break
                     

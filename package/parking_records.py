@@ -41,10 +41,10 @@ def add_record(category,model,registration,colour,slot,date_time):
     mycursor.execute(sqlcommand,data)
     mydb.commit()
 
-def get_record(catagory,registration):
+def get_record(registration):
     my_list = []
-    sqlcommand = "SELECT * FROM parking_record WHERE (category,registration_num) = (%s,%s)" 
-    mycursor.execute(sqlcommand,(catagory,registration, ))
+    sqlcommand = "SELECT * FROM parking_record WHERE registration_num = %s" 
+    mycursor.execute(sqlcommand,(registration, ))
     myresult = mycursor.fetchone()
     return myresult
 
@@ -61,3 +61,9 @@ def query(model):
     result = mycursor.fetchall()
     for i in result:
         print(i)
+
+def delete_record(id,reg_num):
+    sqlcommand = "DELETE FROM parking_record where (id,registration_num) = (%s,%s)"
+    value = (id,reg_num, )
+    mycursor.execute(sqlcommand,value)
+    mydb.commit()

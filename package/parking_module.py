@@ -61,11 +61,12 @@ class Parking:
     def remove_car(self,parking_slot,parking_space):
         parking_space[parking_slot] = parking_slot
 
-    def bike_park(self,parking_slot,parking_space):
+    def bike_park(self,parking_slot):
         now = datetime.now()
         current_time_str = now.strftime("%Y-%m-%d %H:%M:%S.%f")
         # current_time = datetime.strptime(current_time_str,"%H:%M:%S").time()
         parking_space[parking_slot] = "R"
+        print(parking_space)
         print(f"\nTime:{current_time_str}\n")
         return parking_slot,current_time_str
 
