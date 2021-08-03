@@ -59,8 +59,11 @@ def query(model):
     sqlcommand = "SELECT * FROM parking_record WHERE model like %s ORDER BY date_time"
     mycursor.execute(sqlcommand,(param, ))
     result = mycursor.fetchall()
+    print(f"id,  category,   model name,   colour,   parking slot,   datetime")
+    print("\n")
     for i in result:
         print(i)
+        print("\n")
 
 def delete_record(id,reg_num):
     sqlcommand = "DELETE FROM parking_record where (id,registration_num) = (%s,%s)"

@@ -75,14 +75,19 @@ if __name__ == "__main__":
                     slot = my_result[5]
                     catagoery =  my_result[1]
                     date_time = my_result[6]
-                    if vechile_catagoery.lower() == "a":
+                    if catagoery == "A":
                         park.remove_bike(slot,parking_space)
-                    elif vechile_catagoery.lower() == "b":
+                    elif catagoery == "B":
                         park.remove_car(slot,parking_space)
 
                     bill = park.cost(catagoery,date_time)
+                    print("\n")
+                    print("*"*100)
+                    print("\n")
                     print(f"Total bill is {bill}")
-                    print('ok')
+                    print("\n")
+                    print("*"*100)
+                    print("\n")
                 elif choice == 3:
                     carid = int(input("Enter parking id you want to update: "))
                     try:
@@ -106,7 +111,9 @@ if __name__ == "__main__":
                         print("xaoma")
                 elif choice == 4:
                     model = input("Enter model name: ")
+                    print("\n\n")
                     print("Fetching data.Please wait....")
+                    print("\n\n")
                     parking_records.query(model)
                 elif choice == 5:
                     try:
@@ -121,5 +128,6 @@ if __name__ == "__main__":
                     else:
                         print(f"Please check id.ID {id} not found!")
                 else:
+                    print("Thank you!")
                     break
                     
