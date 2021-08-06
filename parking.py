@@ -1,6 +1,6 @@
 from package import parking_module, vechile_module, parking_records
 
-parking_space = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+parking_space = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 if __name__ == "__main__":
     print("*"*100)
     print("Welcome!")
@@ -9,7 +9,7 @@ if __name__ == "__main__":
     park = parking_module.Parking()
     while True:
         park.display_board(parking_space)
-        if park.check_parking_full():
+        if park.check_parking_full(parking_space):
             print("Parking is full")
             break
         else:

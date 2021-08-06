@@ -27,19 +27,29 @@ class Parking:
         print("-----------")
 
     def space_check(self,position,parking_space):
-        return parking_space[position] == position
+        while position < len(parking_space):
+            if parking_space[position] == "R":
+                return "R"
+            else:
+                return None
+        
+        # return parking_space[position] == position
 
-    def check_parking_full(self):
-        for i in range(15):
+    def check_parking_full(self,parking_space):
+        parking_full = False
+        for i in range(len(parking_space)):
             check = self.space_check(i,parking_space)
             if check == "R":
                 # return true if parking is full
-                return True
-            return False
+                parking_full = True
+            else:
+                parking_full = False
+                break
+        return parking_full
 
     def get_ticket(self,parking_space):
         empty_space = []
-        if not self.check_parking_full():
+        if not self.check_parking_full(parking_space):
             for i in parking_space:
                 if i != "R":
                     empty_space.append(i)
@@ -60,8 +70,9 @@ class Parking:
 
     def remove_car(self,parking_slot,parking_space):
         parking_space[parking_slot] = parking_slot
+        return parking_slot
 
-    def bike_park(self,parking_slot):
+    def bike_park(self,parking_slot,parking_space):
         now = datetime.now()
         current_time_str = now.strftime("%Y-%m-%d %H:%M:%S.%f")
         # current_time = datetime.strptime(current_time_str,"%H:%M:%S").time()
@@ -72,6 +83,7 @@ class Parking:
 
     def remove_bike(self, parking_slot,parking_space):
         parking_space[parking_slot] = parking_slot
+        return parking_slot
 
     def cost(self, category, date_time_str):
         now = datetime.now()

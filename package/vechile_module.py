@@ -8,5 +8,5 @@ class Vechile:
         self.registration_num = registration_num
         self.colour = colour
 
-    def __str__(self):
-        return f"Catagoery: {self.catagoery}\n Model: {self.model}\n Registration number:{self.registration_num}\n Colour:{self.colour}"
+    def display_info(self):
+        return self.catagoery,self.model,self.registration_num,self.colour
